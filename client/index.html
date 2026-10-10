@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Full-Stack Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Full-Stack Application</h1>
+        <p>Week 4 - Task 2</p>
+    </header>
+
+    <main>
+        <h2>Welcome!</h2>
+        <p>This application is deployed using a cloud hosting platform.</p>
+
+        <button onclick="showMessage()">Click Me</button>
+        <p id="message"></p>
+    </main>
+
+    <script>
+    async function showMessage() {
+        try {
+            const response = await fetch("/api/status");
+            const data = await response.json();
+
+            document.getElementById("message").textContent =
+                data.message;
+        } catch (error) {
+            document.getElementById("message").textContent =
+                "Unable to connect to the backend.";
+        }
+    }
+</script>
